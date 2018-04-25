@@ -4,18 +4,18 @@ DOCKER_IMAGE_NAME = "kieker/kieker-build:openjdk8"
 
 node('kieker-slave-docker') {
   try {
-  	stage('Pull Request Check') {
-    	if ( isPRMergeBuild() ) {
+	stage('Pull Request Check') {
+    	    if ( isPRMergeBuild() ) {
     		echo "This build is a pull request from branch '${env.BRANCH_NAME}' to branch '${env.CHANGE_TARGET}'."
 
-	    	if ( env.CHANGE_TARGET == 'stable' ) {
+		if ( env.CHANGE_TARGET == 'stable' ) {
 	    		error "Pull requests are not allowed to target to the 'stable' branch."
 	    	}
-    	}
+    	    }
   	}
 
     stage ('Checkout') {
-	checkout([$class: 'GitSCM', extensions: [[$class: 'CloneOption', noTags: false, shallow: true, timeout: 3]]]
+	checkout([$class: 'GitSCM', extensions: [[$class: 'CloneOption', noTags: false, shallow: true, timeout: 3]]])
     }
 
     stage ('1-compile logs') {
