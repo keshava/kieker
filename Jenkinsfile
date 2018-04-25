@@ -15,10 +15,7 @@ node('kieker-slave-docker') {
   	}
 
     stage ('Checkout') {
-		//timeout(time: 3, unit: 'MINUTES') {	// typically finished in under 1 min.
-        	//checkout scm
-		checkout([$class: 'GitSCM', extensions: [[$class: 'CloneOption', noTags: false, shallow: true, timeout: 3]]]
-        }
+	checkout([$class: 'GitSCM', extensions: [[$class: 'CloneOption', noTags: false, shallow: true, timeout: 3]]]
     }
 
     stage ('1-compile logs') {
