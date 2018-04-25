@@ -15,7 +15,7 @@ node('kieker-slave-docker') {
   	}
 
     stage ('Checkout') {
-	checkout([$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 3]]])
+	checkout([$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 3]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/kieker-monitoring/kieker.git']]])
     }
 
     stage ('1-compile logs') {
