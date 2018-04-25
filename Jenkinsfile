@@ -17,12 +17,10 @@ node('kieker-slave-docker') {
     stage ('Checkout') {
 	checkout scm: [
 	    $class: 'GitSCM',
-	    doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
 	    extensions: [
 		[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 3]
 	    ],
-	    submoduleCfg: [],
-	    userRemoteConfigs: scm.userRemoteConfigs
+	    userRemoteConfigs: [[]]
         ]
     }
 
