@@ -20,7 +20,7 @@ node('kieker-slave-docker') {
 	    extensions: [
 		[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 3]
 	    ],
-	    userRemoteConfigs: [[]]
+	    userRemoteConfigs: []
         ]
     }
 
