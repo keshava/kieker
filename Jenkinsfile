@@ -54,12 +54,12 @@ node('kieker-slave-docker') {
     }
 
     stage ('5-release-check-extended logs') {
-        if (env.BRANCH_NAME == "master" || env.CHANGE_TARGET != null) {
-            sh 'echo "We are in master or in a PR - executing the extended release archive check."'
+        if (env.BRANCH_NAME == "master" || env.BRANCH_NAME.endsWith('-RC') || env.CHANGE_TARGET != null) {
+            sh 'echo "We are in master, release candidate (RC) branch, or in a PR - executing the extended release archive check."'
     
             sh 'docker run --rm -u `id -u` -v ' + env.WORKSPACE + ':/opt/kieker ' + DOCKER_IMAGE_NAME +' /bin/bash -c "cd /opt/kieker; ./gradlew checkReleaseArchives"'
         } else {
-            sh 'echo "We are not in master or in a PR - skipping the extended release archive check."'
+            sh 'echo "We are not in master, release candidate branch (RC), or in a PR - skipping the extended release archive check."'
         }
     }
 
