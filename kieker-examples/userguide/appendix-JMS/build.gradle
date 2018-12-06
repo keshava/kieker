@@ -1,5 +1,10 @@
 apply plugin: 'application'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+repositories {
+  mavenCentral()
+}
 
 dependencies {
 	compile fileTree('lib') {
@@ -9,6 +14,7 @@ dependencies {
 		//include "kieker-*-emf.jar"
 		//include "commons-logging-*.jar"
   }
+  compile 'org.apache.activemq:activemq-all:5.15.8'
 }
 
 def monitoringConfigurationActiveMQ = 'META-INF/kieker.monitoring.properties-activemq'
