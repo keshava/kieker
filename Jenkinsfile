@@ -8,7 +8,7 @@ pipeline {
 
   agent {
     docker {
-      image '8-jdk-alpine'
+      image 'openjdk:8-jdk-alpine'
       args env.DOCKER_ARGS
       label 'kieker-slave-docker'
     }
