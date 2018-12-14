@@ -8,7 +8,7 @@ pipeline {
 
   agent {
     docker {
-      image 'gradle:5.0-jdk8-alpine'
+      image '8-jdk-alpine'
       args env.DOCKER_ARGS
       label 'kieker-slave-docker'
     }
@@ -37,8 +37,8 @@ pipeline {
     stage('Compile') {
       steps {
         dir(env.WORKSPACE) {
-          sh 'gradle compileJava'
-          sh 'gradle compileTestJava'
+          sh './gradlew compileJava'
+          sh './gradlew compileTestJava'
         }
       }
     }
@@ -47,7 +47,7 @@ pipeline {
     stage('Unit Test') {
       steps {
         dir(env.WORKSPACE) {
-          sh 'gradle test'
+          sh './gradlew test'
         }
       }
     }
