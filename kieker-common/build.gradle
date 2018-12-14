@@ -1,33 +1,10 @@
-apply plugin: 'eclipse'
-apply plugin: "com.github.hauner.jarTest"
+plugins {
+    id 'java-library'
+
+    // This plugin provides test classes as 'testArchives' configuration to other projects
+    id 'com.github.hauner.jarTest' version '1.0.1'
+}
 
 dependencies {
-	// no project-specific dependencies
-	clover 'org.openclover:clover:4.2.0'
-	
-}
-
-clover {
-	report {
-		html=true
-	}
-	
-}
-
-eclipse {
-	classpath {
-		defaultOutputDir = file('build-eclipse')
-	}
-}
-
-task replaceHardCodedVersionNames() {
-  doLast {
-	regexpReplaceInFiles(project.file("src/kieker/common/util/Version.java"), "VERSION = \".*?\"", "VERSION = \"${version}\"")
-  }
-}
-
-compileJava.dependsOn replaceHardCodedVersionNames
-
-clean.doFirst {
-	delete "${projectDir}/bin/build-eclipse/"
+  testCompile 'org.hamcrest:hamcrest:2.1-rc3'
 }

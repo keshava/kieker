@@ -1,47 +1,42 @@
-apply plugin: 'eclipse'
-apply plugin: 'com.github.hauner.jarTest'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-configurations {
-	emfJarConfig	// all dependencies in this config are included into the emf jar. This is necessary for the scripts in bin/ to work.
+plugins {
+  id 'java-library'
 }
 
 dependencies {
-	clover 'org.openclover:clover:4.2.0'
-
 	compile project(':kieker-common')
 
-	compile resolveLibrary('javax.jms-*.jar')				// old library; not available via maven repo
-	compile 'org.apache.cxf:cxf:2.6.17'							// cxf-bundle
-	compile resolveLibrary('org.eclipse.emf.common_*.jar')
-	compile resolveLibrary('org.eclipse.emf.ecore.xmi_*.jar')
-	compile resolveLibrary('org.eclipse.emf.ecore_*.jar')
-	compile 'com.rabbitmq:amqp-client:4.2.1'
-	compile 'com.google.guava:guava:20.0'				// (21.0 and above require java 8) used by StringRegistryCache for amqp reader
-	compile 'org.tukaani:xz:1.6'	// decompression algorithms used by the readers
-		
-	emfJarConfig 'net.sourceforge.teetime:teetime:3.0'
-	emfJarConfig 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
-	compile configurations.emfJarConfig
+  // XZ compression (for writers)
+	compile 'org.tukaani:xz:1.6'
+
+	compile 'org.apache.cxf:cxf-bundle-minimal:2.7.18'
+
+  compile 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.15.0'
+
+	// RabbitMQ
+  compile 'com.rabbitmq:amqp-client:4.2.1'
+
+  compile 'net.sourceforge.teetime:teetime:3.0'
+	compile 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
+
+	testCompile project(path: ':kieker-common', configuration: 'testArchives')
+
+
+
+
+
+
+
+
+  // not needed?
+  //compile 'org.eclipse.emf:org.eclipse.emf.common:2.15.0'
+  //compile 'org.eclipse.emf:org.eclipse.emf.ecore:2.15.0'
+	//compile resolveLibrary('javax.jms-*.jar')
+	//compile 'com.google.guava:guava:20.0'				// (21.0 and above require java 8) used by StringRegistryCache for amqp reader
+
+	//testCompile project (':kieker-common')
 
 	// this project depends on the tests of kieker-common, e.g., it requires the class AbstractKiekerTest
-	testCompile project (path: ':kieker-common', configuration: 'testArchives')
 	
-	testRuntime 'org.apache.derby:derby:10.12.1.1'	// (10.13.1.1 and above require Java 8)
+	//testRuntime 'org.apache.derby:derby:10.12.1.1'	// (10.13.1.1 and above require Java 8)
 }
 
-
-clover {
-	report {
-		html=true
-	}
-	
-}
-
-eclipse {
-	classpath {
-		defaultOutputDir = file('build-eclipse')
-	}
-}
