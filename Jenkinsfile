@@ -14,9 +14,9 @@ pipeline {
     }
   }
 
-  triggers {
+  //triggers {
     //cron(env.BRANCH_NAME == 'master' ? '@daily' : '')
-  }
+  //}
 
   stages {
     stage('Precheck') {
