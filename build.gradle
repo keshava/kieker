@@ -869,6 +869,7 @@ def sourceContent = project.copySpec {
         exclude 'kieker-examples/userguide/**/.settings'
         exclude '**/build/**'
 	exclude '?/'
+	exclude 'docs/'
         exclude 'build-eclipse/'
         exclude '**/.gradle/**'
         exclude '**/*.log'
