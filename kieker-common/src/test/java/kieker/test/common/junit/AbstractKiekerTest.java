@@ -35,26 +35,30 @@ public abstract class AbstractKiekerTest { // NOPMD (no abstract methods)
 
 	private static final Logger LOGGER; // NOPMD (instantiation takes place in the static constructor)
 
-	/** This rule makes sure that we can dump the name of the currently executed test on the screen. */
+	/**
+	 * This rule makes sure that we can dump the name of the currently executed test
+	 * on the screen.
+	 */
 	@Rule
 	public TestName nameOfCurrentTest = new TestName(); // NOPMD NOCS
 
 	/**
-	 * Workaround to let JUnit tests with relative references to files within the respective
-	 * module execute in settings where they are execute as modules but also in settings
-	 * where Kieker as executed as a whole. Background: In Gradle the working directory
-	 * when executing tests is the subdirectory of the respective module, e.g., <i>kieker-common</i>;
-	 * when executing within Eclipse, the working directory is Kieker's project root directory.
-	 * This causes problems when relative paths within the modules are used by the tests.
+	 * Workaround to let JUnit tests with relative references to files within the
+	 * respective module execute in settings where they are execute as modules but
+	 * also in settings where Kieker as executed as a whole. Background: In Gradle
+	 * the working directory when executing tests is the subdirectory of the
+	 * respective module, e.g., <i>kieker-common</i>; when executing within Eclipse,
+	 * the working directory is Kieker's project root directory. This causes
+	 * problems when relative paths within the modules are used by the tests.
 	 *
 	 * Note that the path ends with '/'.
 	 */
-	private volatile String testModulePrefix = "./";
+	private volatile String testModulePrefix = "./src/";
 
 	/**
-	 * True if test executed inside the respective module (e.g., <i>kieker-common</i>),
-	 * which is true for Gradle-based executions; false if the working directory is
-	 * Kieker's root directory (e.g., in Eclipse).
+	 * True if test executed inside the respective module (e.g.,
+	 * <i>kieker-common</i>), which is true for Gradle-based executions; false if
+	 * the working directory is Kieker's root directory (e.g., in Eclipse).
 	 *
 	 */
 	private volatile boolean workingDirectoryIsModuleDirectory;
@@ -74,7 +78,8 @@ public abstract class AbstractKiekerTest { // NOPMD (no abstract methods)
 	}
 
 	/**
-	 * This method writes in fact just the name of the test which is currently executed.
+	 * This method writes in fact just the name of the test which is currently
+	 * executed.
 	 */
 	@Before
 	public final void printNameOfCurrentTest() {
@@ -90,7 +95,8 @@ public abstract class AbstractKiekerTest { // NOPMD (no abstract methods)
 		this.workingDirectoryIsModuleDirectory = new File(currentDir + "/src").isDirectory();
 		if (this.workingDirectoryIsModuleDirectory) { // in this case, we are fine and can use the paths right away
 			this.testModulePrefix = "./";
-		} else { // we need to find out whether in kieker-common, kieker-monitoring, kieker-tools, or kieker-analysis
+		} else { // we need to find out whether in kieker-common, kieker-monitoring,
+					// kieker-tools, or kieker-analysis
 			final String testClassName = this.getClass().getName();
 			if (testClassName.startsWith("kieker.test.common")) {
 				this.testModulePrefix = "kieker-common/";
@@ -113,11 +119,10 @@ public abstract class AbstractKiekerTest { // NOPMD (no abstract methods)
 	}
 
 	/**
-	 * Turns a path relative to the module directory (e.g., kieker-common) into
-	 * a path relative to the working directory.
+	 * Turns a path relative to the module directory (e.g., kieker-common) into a
+	 * path relative to the working directory.
 	 *
-	 * @param path
-	 *            the path relative to the module directory
+	 * @param path the path relative to the module directory
 	 * @return the converted path
 	 */
 	protected String modulePathToWorkingPath(final String path) {
@@ -128,10 +133,10 @@ public abstract class AbstractKiekerTest { // NOPMD (no abstract methods)
 	}
 
 	/**
-	 * Turns a path relative to the working directory into a path relative to the module directory (e.g., kieker-common).
+	 * Turns a path relative to the working directory into a path relative to the
+	 * module directory (e.g., kieker-common).
 	 *
-	 * @param path
-	 *            the path relative to the working directory
+	 * @param path the path relative to the working directory
 	 * @return the converted path
 	 */
 	protected String workingPathToModulePath(final String path) {

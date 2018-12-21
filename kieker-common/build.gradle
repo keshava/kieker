@@ -1,8 +1,8 @@
 plugins {
-    id 'java-library'
+  id 'java-library'
 
-    // This plugin provides test classes as 'testArchives' configuration to other projects
-    id 'com.github.hauner.jarTest' version '1.0.1'
+  // This plugin provides test classes as 'testArchives' configuration to other projects
+  id 'com.github.hauner.jarTest' version '1.0.1'
 }
 
 dependencies {

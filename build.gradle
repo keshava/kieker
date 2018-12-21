@@ -1,9 +1,13 @@
+apply plugin: 'base'
+
 allprojects {
+  apply plugin: 'eclipse'
 }
 
 subprojects {
-  apply plugin: 'java'
   
+  apply plugin: 'java'
+
   repositories {
     mavenCentral()
     jcenter()
@@ -20,23 +24,27 @@ subprojects {
   sourceSets {
     main {
       java {
-        srcDir 'src'
-        srcDir 'src-gen'
+        srcDir 'src/main/java'
+        srcDir 'src/src-gen/java'
+        srcDir 'src/model/java'
       }
       resources {
-        srcDir 'src-resources'
+        srcDir 'src/main/resources'
+        srcDir 'src/src-gen/resources'
+      }
+    }
+    
+    test {
+      java {
+        srcDir 'src/test/java'
+        srcDir 'src/test-gen/java'
+      }
+      resources {
+        srcDir 'src/test/resources'
+        srcDir 'src/test-gen/resources'
       }
     }
 
-    test {
-      java {
-        srcDir 'test'
-        srcDir 'test-gen'
-      }
-      resources {
-        srcDir 'test-resources'
-      }
-    }
   }
 }
 

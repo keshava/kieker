@@ -25,8 +25,9 @@ import java.util.LinkedList;
 import kieker.test.common.junit.util.filesystem.FSUtil4Tests;
 
 /**
- * This abstract class is the base for all other dynamic JUnit tests within the system. Those are tests which search for
- * example for specific classes in the source directory.
+ * This abstract class is the base for all other dynamic JUnit tests within the
+ * system. Those are tests which search for example for specific classes in the
+ * source directory.
  *
  * @author Nils Christian Ehmke
  *
