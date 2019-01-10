@@ -37,8 +37,8 @@ pipeline {
     stage('Compile') {
       steps {
         dir(env.WORKSPACE) {
-          sh './gradlew compileJava'
-          sh './gradlew compileTestJava'
+          sh './gradlew --parallel compileJava'
+          sh './gradlew --parallel compileTestJava'
         }
       }
     }
@@ -47,7 +47,7 @@ pipeline {
     stage('Unit Test') {
       steps {
         dir(env.WORKSPACE) {
-          sh './gradlew test'
+          sh './gradlew --parallel test'
         }
       }
     }
