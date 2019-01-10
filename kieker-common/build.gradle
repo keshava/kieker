@@ -6,5 +6,5 @@ plugins {
 }
 
 dependencies {
-  testCompile 'org.hamcrest:hamcrest:2.1-rc3'
+  testImplementation 'org.hamcrest:hamcrest:2.1-rc3'
 }

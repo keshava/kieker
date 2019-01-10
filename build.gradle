@@ -11,13 +11,19 @@ subprojects {
   repositories {
     mavenCentral()
     jcenter()
-    maven { url "https://plugins.gradle.org/m2/" }
-    maven { url "https://maven.repository.redhat.com/ga/" }
+    maven { 
+      name "Gradle Plugins"
+      url "https://plugins.gradle.org/m2/" 
+    }
+    maven { 
+      name "RedHat Maven Repository"
+      url "https://maven.repository.redhat.com/ga/" 
+    }
   }
 
   dependencies {
-    compile 'com.github.spotbugs:spotbugs-annotations:3.1.9'
-    compile 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'com.github.spotbugs:spotbugs-annotations:3.1.9'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
     testImplementation 'junit:junit:4.12'
   }
 
@@ -44,7 +50,6 @@ subprojects {
         srcDir 'src/test-gen/resources'
       }
     }
-
   }
 }
 
