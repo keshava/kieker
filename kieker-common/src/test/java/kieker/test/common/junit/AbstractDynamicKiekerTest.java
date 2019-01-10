@@ -40,8 +40,8 @@ public abstract class AbstractDynamicKiekerTest extends AbstractKiekerTest {
 	public static final String REGEX_PATTERN_JAVA_TEST_FILES = ".*Test\\.java";
 	public static final String REGEX_PATTERN_JUNIT_PACKAGE_NAME = ".*junit.*";
 
-	private static final String DIR_NAME_TESTS = "test";
-	private static final String DIR_NAME_SOURCES = "src";
+	private static final String DIR_NAME_TESTS = "src/test/java/";
+	private static final String DIR_NAME_SOURCES = "src/main/java/";
 
 	protected Collection<Class<?>> deliverAllAvailableClassesFromSourceDirectory() throws ClassNotFoundException {
 		final String dirNameSourcesNormalized = super.modulePathToWorkingPath(DIR_NAME_SOURCES);
@@ -84,9 +84,8 @@ public abstract class AbstractDynamicKiekerTest extends AbstractKiekerTest {
 
 		for (final File file : files) {
 			final String pathName = this.workingPathToModulePath(file.getPath());
-			String className = pathName.substring(0, pathName.length() - 5).replace(File.separator, ".");
-			final int firstPointPos = className.indexOf('.');
-			className = className.substring(firstPointPos + 1);
+			String className = pathName.substring(0, pathName.length() - ".java".length()).replace(File.separator, ".");
+			className = className.substring(DIR_NAME_SOURCES.length());
 
 			results.add(className);
 		}
