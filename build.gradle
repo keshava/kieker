@@ -1,7 +1,16 @@
+
+plugins {
+  id 'nebula.lint' version '9.3.4'
+}
+
 apply plugin: 'base'
 
 allprojects {
   apply plugin: 'eclipse'
+
+  apply plugin: 'nebula.lint'
+  gradleLint.rules = ['all-dependency']
+  gradleLint.reportFormat = 'html'
 }
 
 subprojects {
