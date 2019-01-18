@@ -3,36 +3,22 @@ plugins {
 }
 
 dependencies {
-	implementation project(':kieker-common')
+	compile project(':kieker-common')
 
-  // XZ compression (for writers)
-	implementation 'org.tukaani:xz:1.6'
+  compile 'com.rabbitmq:amqp-client:4.2.1'
+	compile 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
+  compile 'net.sourceforge.teetime:teetime:3.0'
+  compile 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.15.0'
+	compile 'org.tukaani:xz:1.6'
 
 	implementation 'org.apache.cxf:cxf-bundle-minimal:2.7.18'
-
-  implementation 'org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.15.0'
-
-	// RabbitMQ
-  implementation 'com.rabbitmq:amqp-client:4.2.1'
-
-  implementation 'net.sourceforge.teetime:teetime:3.0'
-	implementation 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
-
-
-	testImplementation project(path: ':kieker-common', configuration: 'testArchives')
+	
+  testImplementation project(path: ':kieker-common', configuration: 'testArchives')
 	testImplementation 'org.apache.derby:derby:10.12.1.1'	// (10.13.1.1 and above require Java 8)
 
 
-
-
-
-
-
   // not needed?
-  //implementation 'org.eclipse.emf:org.eclipse.emf.common:2.15.0'
-  //implementation 'org.eclipse.emf:org.eclipse.emf.ecore:2.15.0'
 	//implementation resolveLibrary('javax.jms-*.jar')
 	//implementation 'com.google.guava:guava:20.0'				// (21.0 and above require java 8) used by StringRegistryCache for amqp reader
-	
 }
 
