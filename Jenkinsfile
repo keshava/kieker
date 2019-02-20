@@ -2,8 +2,8 @@
 
 pipeline {
 
-  environment {
-  }
+  //environment {
+  //}
 
   agent {
     docker {
