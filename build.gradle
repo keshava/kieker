@@ -1,9 +1,14 @@
-
 plugins {
   id 'nebula.lint' version '9.3.4'
+  id 'org.owasp.dependencycheck' version '5.0.0-M2'
 }
 
 apply plugin: 'base'
+apply plugin: 'org.owasp.dependencycheck'
+
+dependencyCheck {
+  failBuildOnCVSS = 7
+}
 
 allprojects {
   apply plugin: 'eclipse'
