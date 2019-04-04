@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import kieker.common.configuration.Configuration;
@@ -44,6 +45,8 @@ import kieker.test.monitoring.util.NamedListWriter;
  *
  * @since 1.8
  */
+@Ignore
+@Deprecated
 public class TestCPUsDetailedPercSampler extends AbstractKiekerTest { // NOCS
 
 	private volatile String listName;
