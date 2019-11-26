@@ -100,6 +100,7 @@ pipeline {
         stage('Distribution Build') {
           steps {
             sh './gradlew build distribute'
+          }
         }
       }
     }
