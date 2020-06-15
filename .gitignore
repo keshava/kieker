@@ -41,3 +41,6 @@ plugin.xml
 .idea/
 *.iml
 *.iws
+
+caches
+daemon
